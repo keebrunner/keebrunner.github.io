@@ -12,6 +12,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Copy output.html to gh-pages
         run: |
-          cp output.html gh-pages/
+          cp src/main/java/io/github/keebrunner/blog/output.html gh-pages/
           git commit -m "Update output.html in gh-pages"
           git push origin gh-pages
