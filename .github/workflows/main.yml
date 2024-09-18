@@ -1,4 +1,4 @@
-name: Copy output.html to gh-pages branch
+name: Копировать output.html в ветку gh-pages
 
 on:
   push:
@@ -10,17 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set Git config
+      - name: Настройка конфигурации Git
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-      - name: Copy output.html to gh-pages
+      - name: Копировать output.html в ветку gh-pages
         run: |
-          git fetch origin gh-pages
+          git fetch origin gh-pages 
           git checkout --orphan gh-pages
-          # Delete any existing files in the gh-pages branch
-          rm -rf *
           cp src/main/java/io/github/keebrunner/blog/output.html .
           git add output.html
-          git commit -m "Update output.html in gh-pages"
-          git push origin gh-pages
+          git commit -m "Обновить output.html в ветке gh-pages"
+          # Принудительный push для перезаписи удаленной ветки
+          git push -f origin gh-pages
