@@ -21,6 +21,6 @@ jobs:
           git rm --cached -r .
           cp src/main/java/io/github/keebrunner/blog/output.html .
           git add output.html
-          git commit -m "Update output.html in gh-pages"
           git clean -fd --ignore output.html
+          git commit -m "Update output.html in gh-pages"
           git push -f origin gh-pages
