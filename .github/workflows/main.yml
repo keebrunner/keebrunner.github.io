@@ -21,6 +21,3 @@ jobs:
                     git add output.html
                     git commit -m "Update output.html in gh-pages"
                     git push origin gh-pages
-          # Use the correct secret name
-          env:
-            GH_PAGES_TOKEN: ${{ secrets.blog }}
