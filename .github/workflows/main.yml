@@ -22,4 +22,4 @@ jobs:
                     git commit -m "Update output.html in gh-pages"
                     git push origin gh-pages
           env:
-    GITHUB_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+    GH_PAGES_TOKEN: ${{ secrets.blog }}
