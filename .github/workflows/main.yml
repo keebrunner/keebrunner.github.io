@@ -18,6 +18,7 @@ jobs:
         run: |
           
           git checkout --orphan gh-pages
+          rm -rf .
           cp src/main/java/io/github/keebrunner/blog/output.html .
           git add output.html
           git commit -m "Update output.html in gh-pages"
