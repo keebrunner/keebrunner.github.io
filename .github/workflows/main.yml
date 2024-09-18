@@ -16,8 +16,9 @@ jobs:
           git config user.email "actions@github.com"
       - name: Copy output.html in gh-pages
         run: |
+          
           git checkout --orphan gh-pages
           cp src/main/java/io/github/keebrunner/blog/output.html .
           git add output.html
-          git commit
+          git commit -m "Update output.html in gh-pages"
           git push -f origin gh-pages
