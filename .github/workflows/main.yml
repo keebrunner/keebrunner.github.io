@@ -17,8 +17,8 @@ jobs:
       - name: Copy output.html in gh-pages
         run: |
           
-          git checkout gh-pages
+          git checkout --orphan gh-pages
           cp src/main/java/io/github/keebrunner/blog/output.html .
-          git add output.html
+          git add -i output.html
           git commit -m "Update output.html in gh-pages"
           git push -f origin gh-pages
