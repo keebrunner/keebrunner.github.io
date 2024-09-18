@@ -21,3 +21,5 @@ jobs:
                     git add output.html
                     git commit -m "Update output.html in gh-pages"
                     git push origin gh-pages
+          env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
