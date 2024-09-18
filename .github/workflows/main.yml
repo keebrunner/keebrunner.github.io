@@ -15,11 +15,11 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
       - name: Copy output.html in gh-pages
-        run: |
-          
+        run: |          
           git checkout --orphan gh-pages
           git rm --cached -r .
           cp src/main/java/io/github/keebrunner/blog/output.html .
+          cp Dockerfile .
           git add output.html, Dockefile
           git clean -fd -e output.html, Dockerfile
           git commit -m "Update output.html in gh-pages"
