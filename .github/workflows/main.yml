@@ -1,0 +1,15 @@
+name: Copy output.html to gh-pages branch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Copy output.html to gh-pages
+        run: |
+          git checkout gh-pages
