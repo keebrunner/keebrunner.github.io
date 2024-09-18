@@ -10,10 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set Git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
       - name: Copy output.html to gh-pages
         run: |
-          git checkout --orphan gh-pages
+          git checkout gh-pages
           cp src/main/java/io/github/keebrunner/blog/output.html .
-                    git add output.html
-                    git commit -m "Update output.html in gh-pages"
-                    git push origin gh-pages
+          git add output.html
+          git commit -m "Update output.html in gh-pages"
+          git push origin gh-pages
