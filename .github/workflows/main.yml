@@ -16,13 +16,11 @@ jobs:
           git config user.email "actions@github.com"
       - name: Copy output.html in gh-pages
         run: |
+          
           git checkout --orphan gh-pages
+          git rm --cached -r .
           cp src/main/java/io/github/keebrunner/blog/output.html .
-          git add output.html  # Add only output.html
-          # Remove all untracked files
-          git clean -fd  
-          # Remove all tracked files except output.html
-          git rm -r --cached .  
-          git rm -r --cached --ignore-unmatch 'output.html' .
+          git add output.html
           git commit -m "Update output.html in gh-pages"
+          git rm -rf --ignore-unmatch 'output.html' .
           git push -f origin gh-pages
