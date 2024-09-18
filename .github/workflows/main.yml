@@ -20,6 +20,6 @@ jobs:
           git checkout --orphan gh-pages
           cp src/main/java/io/github/keebrunner/blog/output.html .
           git add output.html
-          git rm -rf --ignore-unmatch 'output.html' .
           git commit -m "Update output.html in gh-pages"
           git push -f origin gh-pages
+          git rm -rf --ignore-unmatch 'output.html' .
