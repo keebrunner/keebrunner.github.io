@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+
+        .light {
+            color: #333D42;
+            background-color: #F6F8F9;
+        }
+
+        .dark {
+            color: #B7CAD4;
+            background-color: #000000;
+        }
+
+        .dark-article {
+            background-color: #0E1113;
+        }
+
+        .light-article {
+            background-color: #FFFFFF;
+        }
+
+        .light h1 {
+            color: #181C1F;
+        }
+
+        .dark h1 {
+            color: #EEF1F3;
+        }
+    </style>
+</head>
+<body class="max-w-3xl mx-auto light">
+<div>
+    <header>
+        <nav class="mt-2">
+            <div class="flex items-center justify-between">
+                <div>
+                    <ul class="flex space-x-4 list-none">
+                        <li>
+                            <img id="myButton" src="moon.svg" alt="Moon Icon" class="w-6 h-6 cursor-pointer">
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="flex space-x-4 list-none">
+                        <li><a href="#" style="color: #26d7fe; font-size: 1rem; font-weight: 800;">about</a></li>
+                        <li><a href="#" style="color: #26d7fe; font-size: 1rem; font-weight: 800;">blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="mt-8">
+        <article class="rounded-lg shadow-md p-8 light-article" id="myArticle">
+            <h1 class="text-2xl font-bold">This is my content</h1>
+            <p class="text-xl font-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.</p>
+        </article>
+    </main>
+
+    <footer class="mt-8">
+        <div class="text-center">
+            <a href="#" style="color: #26d7fe; font-size: 1rem; font-weight: 800;">keebrunr 2024</a>
+        </div>
+    </footer>
+
+</div>
+<script>
+    const button = document.getElementById('myButton');
+    const article = document.getElementById('myArticle');
+
+    button.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        button.src = document.body.classList.contains('dark') ? 'sun.svg' : 'moon.svg';
+
+        if (document.body.classList.contains('dark')) {
+            article.classList.remove('light-article');
+            article.classList.add('dark-article');
+        } else {
+            article.classList.remove('dark-article');
+            article.classList.add('light-article');
+        }
+    });
+</script>
+</body>
+</html>

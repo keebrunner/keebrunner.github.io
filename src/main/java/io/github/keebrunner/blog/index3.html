@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body class="max-w-3xl mx-auto light">
+<div>
+    <header>
+        <nav class="mt-2">
+            <div class="flex items-center justify-between">
+                <div>
+                    <ul class="flex space-x-4 list-none">
+                        <li>
+                            <img id="myButton" src="moon.svg" alt="Moon Icon" class="w-6 h-6 cursor-pointer">
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="flex space-x-4 list-none">
+                        <li><a href="#">about</a></li>
+                        <li><a href="#">blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="mt-8">
+        <article class="rounded-lg shadow-md p-8 light-article" id="myArticle">
+            <h1 class="text-2xl">This is my content</h1>
+            <p class="text-xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt
+                ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.Бинго. Верховенство закона и конкурентный, благоприятный для бизнеса свободный рынок могут творить чудеса.
+
+                Бразилия не достигла большого промышленного прогресса, она осуществляла большое государственное вмешательство и манипуляции в экономике, у них не было свободного рынка, они зависели от продажи ресурсов вместо развития капиталистической инновационной экономики…
+                6
+                @HeitorS.-dh2wl
+                4 часа назад
+                @user-pvmdmtl Проблема в том, что бразильские капиталисты не заботятся об инновациях. Исторически сложилось так, что бразильский капитал всегда был сконцентрирован в руках олигархов, которых на самом деле не заботят инновации. Более того, они этого боятся. Средние также не заинтересованы в инновациях, они просто хотят продолжать получать зарплату и ненавидят любые изменения в эффективности, которые могут навредить им самим.
+                10
+                @borali26
+                3 часа назад
+                @HeitorS.-dh2wl  Здесь бразилец. Их не волнуют инновации, потому что это означает инвестиции и конкуренцию на международном рынке.
+                Они никогда не сделают этого, потому что они могут получить ОГРОМНУЮ СУММУ, чрезмерно исследуя рабочую силу с максимальной прибылью внутри Бразилии. Люди забывают, насколько велика Бразилия, поэтому они могут это сделать.
+                Нам здесь нужен социализм, чтобы сначала уравнять и поставить под контроль олигархов, а потом мы сможем стать либералами.
+                6
+                @ShubhamMishrabro
+                3 часа назад
+                Южная Америка все еще страдает от популистского велферизма. Мексика была похожей, но их соглашение о свободной торговле с США и Китаем, инвестирующее туда, чтобы обойти санкции, делает Мексику производственным гигантом. Я надеюсь, что Южная Америка сосредоточится больше на своем производстве и полезных ископаемых.
+                7
+                @ShubhamMishrabro
+                3 часа назад
+                @borali26  Бразилии нужен социализм? Даже близко. Бразилии нужна социал-демократическая партия, которая сосредоточится на производстве и получении доходов, а затем инвестирует эти доходы в образование и здравоохранение, что принесет им прибыль в ближайшие годы. </p>
+        </article>
+    </main>
+    <footer class="mt-8 mb-2">
+        <div class="text-center">
+            <a href="#">keebrunr 2024</a>
+        </div>
+    </footer>
+
+</div>
+<div id="backToTop" class="fixed bottom right py-2 px-4 rounded hidden backToTop">
+    <div class="speech-bubble">
+        <img src="arrow.svg" alt="Arrow" class="w-full h-full">
+    </div>
+</div>
+<script>
+    const button = document.getElementById('myButton');
+    const article = document.getElementById('myArticle');
+    const backToTopButton = document.getElementById('backToTop');
+
+    button.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        button.src = document.body.classList.contains('dark') ? 'sun.svg' : 'moon.svg';
+
+        if (document.body.classList.contains('dark')) {
+            article.classList.remove('light-article');
+            article.classList.add('dark-article');
+        } else {
+            article.classList.remove('dark-article');
+            article.classList.add('light-article');
+        }
+    });
+
+    // Скролл вниз - показываем кнопку
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 80) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
+
+    // Нажатие на кнопку - скролл наверх
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
+</body>
+</html>

@@ -29,4 +29,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+    implementation("org.jsoup:jsoup:1.18.1")
+    implementation("com.vladsch.flexmark:flexmark-all:0.64.8")
+    implementation 'org.yaml:snakeyaml:2.3'
 }

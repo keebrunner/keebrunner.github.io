@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog Generator</title>
+</head>
+<body>
+<h1>Blog Generator</h1>
+<form th:action="@{/generate}" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" th:value="${blogData.title}"><br><br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" th:text="${blogData.description}"></textarea><br><br>
+
+    <label for="url">URL:</label>
+    <input type="text" id="url" name="url" th:value="${blogData.url}"><br><br>
+
+    <label for="article">Article:</label>
+    <textarea id="article" name="article" th:text="${blogData.article}"></textarea><br><br>
+
+    <button type="submit">Generate</button>
+</form>
+</body>
+</html>
