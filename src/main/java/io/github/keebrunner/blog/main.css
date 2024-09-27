@@ -1,6 +1,12 @@
 /* Общие стили */
 body {
     font-family: 'Inter', sans-serif;
+    visibility: hidden; /* Скрываем содержимое по умолчанию */
+}
+
+body.light,
+body.dark {
+    visibility: visible; /* Показываем содержимое, когда класс light или dark применен */
 }
 
 h1 {

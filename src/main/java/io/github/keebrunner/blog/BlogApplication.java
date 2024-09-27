@@ -20,7 +20,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 @SpringBootApplication
@@ -82,7 +86,22 @@ class HtmlController {
         Yaml yaml = new Yaml();
         Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
-        // Рендерим Markdown контент в HTML
+        // Получаем дату из метаданных (как java.util.Date)
+        java.util.Date date = (java.util.Date) metadata.get("date");
+
+        // Преобразуем java.util.Date в LocalDateTime
+        LocalDateTime localDateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        // Форматируем дату с использованием английской локали
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+        String formattedDate = localDateTime.format(formatter);
+
+        // Вставляем дату в контент Markdown
+        markdownContent = markdownContent.replace("{{date}}", formattedDate);
+
+        // Рендерим Markdown контент в HTML (с вставленной датой)
         Document document = parser.parse(markdownContent);
         String article = renderer.render(document);
 
