@@ -4,6 +4,7 @@ import com.vladsch.flexmark.html.HtmlRenderer;
 import com.vladsch.flexmark.parser.Parser;
 import com.vladsch.flexmark.util.ast.Document;
 import com.vladsch.flexmark.util.data.MutableDataSet;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -30,7 +29,7 @@ import java.util.Map;
 @SpringBootApplication
 public class BlogApplication {
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
 
         // 1. Получаем экземпляр HtmlController
@@ -39,10 +38,13 @@ public class BlogApplication {
         // 2. Вызываем метод generateHtml
         String generatedHtml = controller.generateHtml();
 
-        // 3. Сохраняем HTML
-        Files.write(context.getBean(PathsConfig.class).getOutputFilePath(), generatedHtml.getBytes());
+        // 3. Получаем имя файла из метаданных
+        String outputFileName = controller.getOutputFileName();
 
-        // 4. Закрываем приложение
+        // 4. Сохраняем HTML с именем файла из метаданных
+        Files.write(context.getBean(PathsConfig.class).getOutputFilePath(outputFileName), generatedHtml.getBytes());
+
+        // 5. Закрываем приложение
         System.exit(0);
     }
 }
@@ -63,8 +65,12 @@ class HtmlController {
     @Autowired
     private PathsConfig pathsConfig;
 
+    // Метод для получения имени файла
+    @Getter
+    private String outputFileName; // Поле для хранения имени файла
+
     @GetMapping("/generate")
-    public String generateHtml() throws IOException, URISyntaxException {
+    public String generateHtml() throws IOException {
         // 1.  Получаем  данные  для  каждой  страницы
         Map<String, String> basicData = new HashMap<>();
 
@@ -108,7 +114,10 @@ class HtmlController {
         basicData.put("title", (String) metadata.get("title"));
         basicData.put("description", (String) metadata.get("description"));
         basicData.put("article", article);
-        basicData.put("url", getUrl());
+        basicData.put("url", (String) metadata.get("url")); // Получаем URL из метаданных
+
+        // Сохраняем имя файла из метаданных
+        this.outputFileName = (String) metadata.get("url");
 
         // 4.  Загружаем  шаблоны  для  каждой  страницы
         Path baseTemplatePath = pathsConfig.getBaseFilePath();
@@ -120,11 +129,8 @@ class HtmlController {
         return basicHtml;
     }
 
-    private String getUrl() throws URISyntaxException {
-        URI uri = new URI("http://localhost:8080/generate"); // Замените на ваш URL
-        return uri.toString();
-    }
 }
+
 
 @Component
 class HtmlGenerator {
@@ -146,10 +152,11 @@ class HtmlGenerator {
 @Configuration
 class PathsConfig {
 
-    private final Path home = Path.of("C:", "Users", "keebrunner"); // Замените на ваш домашний каталог
+    private final Path home = Path.of("C:", "Users", "keebrunner");
 
-    public Path getOutputFilePath() {
-        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "output.html"));
+    // Метод для получения пути к выходному файлу с именем файла
+    public Path getOutputFilePath(String fileName) {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", fileName));
     }
 
     public Path getBaseFilePath() {
