@@ -9,7 +9,7 @@ body.dark {
     visibility: visible; /* Показываем содержимое, когда класс light или dark применен */
 }
 
-h1 {
+h1, h2 {
     font-weight: 700;
     font-size: 1.5rem;
 }
@@ -25,7 +25,7 @@ p {
     background-color: #F6F8F9;
 }
 
-.light h1 {
+body.light h1, body.light h2 {
     color: #181C1F;
 }
 
@@ -35,7 +35,7 @@ p {
     background-color: #000000;
 }
 
-.dark h1 {
+body.dark h1, body.dark h2 {
     color: #EEF1F3;
 }
 
