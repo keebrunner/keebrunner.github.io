@@ -156,7 +156,7 @@ class PathsConfig {
 
     // Метод для получения пути к выходному файлу с именем файла
     public Path getOutputFilePath(String fileName) {
-        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", fileName));
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "blog", fileName));
     }
 
     public Path getBaseFilePath() {
