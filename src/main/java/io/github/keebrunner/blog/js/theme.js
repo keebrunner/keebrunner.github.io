@@ -11,8 +11,8 @@ function updateTheme(theme) {
     articleElement.classList.remove('dark-article', 'light-article');
     articleElement.classList.add(theme === 'dark' ? 'dark-article' : 'light-article');
 
-    themeButton.src = theme === 'dark' ? '/img/sun.svg' : 'img/moon.svg';
-    themeButton.alt = theme === 'dark' ? '/img/sun icon' : 'img/moon icon';
+    themeButton.src = theme === 'dark' ? 'img/sun.svg' : 'img/moon.svg';
+    themeButton.alt = theme === 'dark' ? 'img/sun icon' : 'img/moon icon';
     themeButton.parentElement.ariaLabel = theme === 'dark' ? 'button for switching to light theme' : 'button for switching to dark theme';
     themeButton.ariaPressed = theme === 'dark'; // Добавляем aria-pressed
 }
