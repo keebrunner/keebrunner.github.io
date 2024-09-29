@@ -45,6 +45,18 @@
 </header>
 <main class="mt-8">
     <article class="rounded-lg shadow-md p-8" id="myArticle" th:text=>${article}</article>
+
+    <aside class="mt-8">
+        <h2 class="text-xl font-bold mb-4">Latest Posts</h2>
+        <ul class="list-none">
+            <li th:each="post : ${latestPosts}">
+                <a th:href="@{/blog/{post.slug}}" class="text-gray-600 hover:text-blue-500">
+                    <span th:text="${post.date}"></span>
+                    <span th:text="${post.title}"></span>
+                </a>
+            </li>
+        </ul>
+    </aside>
 </main>
 <footer class="mt-8 mb-2 text-center">
     <a href="#">keebrunr 2024</a>
@@ -57,6 +69,4 @@
 <script src="js/theme.js"></script>
 <script src="js/back-to-top.js"></script>
 </body>
-
-
 </html>
