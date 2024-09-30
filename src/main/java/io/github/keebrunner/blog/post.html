@@ -1,4 +1,4 @@
-<!-- base.html -->
+<!-- post.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,14 +44,8 @@
         </ul>
     </nav>
 </header>
-<main class="mt-8 rounded-lg shadow-md">
-    <article class="p-8" id="myArticle" th:text=>${article}</article>
-    <aside class="p-8">
-        <h2 class="mb-4">Latest Posts</h2>
-        <ul class="list-none">
-            ${latestPosts}
-        </ul>
-    </aside>
+<main class="mt-8">
+    <article class="rounded-lg shadow-md p-8" id="myArticle" th:text=>${article}</article>
 </main>
 <footer class="mt-8 mb-2 text-center">
     <a href="#">keebrunr 2024</a>

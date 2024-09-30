@@ -1,27 +1,27 @@
-<!-- base.html -->
+<!-- post.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text=>${title}</title>
-    <meta name="description" th:content="${description}">
+    <title th:text=>My Blog Post</title>
+    <meta name="description" content="This is a description of my blog post.">
     <meta name="author" content="https://github.com/keebrunner/">
     <meta name="theme-color" content="#87CEEB">
     <link rel="icon" type="image/svg+xml" href="hw-adhd-brain-icon.svg">
-    <meta property="og:url" th:content="${url}">
+    <meta property="og:url" content="2024-10-02-my-blog-post.html">
     <meta property="og:type" content="website">
-    <meta property="og:title" th:content="${title}">
-    <meta property="og:description" th:content="${description}">
+    <meta property="og:title" content="My Blog Post">
+    <meta property="og:description" content="This is a description of my blog post.">
     <meta property="og:image"
           content="https://github.com/keebrunner/keebrunner.github.io/blob/gh-pages/brain-mapping.webp">
     <meta property="og:locale" content="en-En"/>
     <meta name="twitter:card" content="summary">
     <meta property="twitter:domain" content="https://keebrunner.github.io/">
-    <meta property="twitter:url" th:content="${url}">
-    <meta name="twitter:title" th:content="${title}">
+    <meta property="twitter:url" content="2024-10-02-my-blog-post.html">
+    <meta name="twitter:title" content="My Blog Post">
     <meta name="twitter:site" content="@keebrunr">
-    <meta name="twitter:description" th:content="${description}">
+    <meta name="twitter:description" content="This is a description of my blog post.">
     <meta name="twitter:image"
           content="https://github.com/keebrunner/keebrunner.github.io/blob/gh-pages/brain-mapping.webp">
     <meta name="twitter:image:alt" content="keebrunr Logo">
@@ -44,14 +44,13 @@
         </ul>
     </nav>
 </header>
-<main class="mt-8 rounded-lg shadow-md">
-    <article class="p-8" id="myArticle" th:text=>${article}</article>
-    <aside class="p-8">
-        <h2 class="mb-4">Latest Posts</h2>
-        <ul class="list-none">
-            ${latestPosts}
-        </ul>
-    </aside>
+<main class="mt-8">
+    <article class="rounded-lg shadow-md p-8" id="myArticle" th:text=><h1>This is my content</h1>
+<p><span style="color: #26d7fe; font-size: 1.25rem; font-style: italic;">02 October 2024 09:19:00</span></p>
+<p><br> <br></p>
+<h2>Восхождение сознания: симфония нейронов и танец синапсов</h2>
+<p>Мозг - это космос, заключенный в хрупкой костяной шкатулке. Миллиарды нейронов, словно звезды, мерцают в его глубинах, сплетаясь в замысловатые сети, подобные галактическим спиралям. Каждый импульс, каждый синаптический разряд - это нота в грандиозной симфонии сознания, рождающей мысли, чувства, мечты и саму ткань нашего &quot;Я&quot;.</p>
+</article>
 </main>
 <footer class="mt-8 mb-2 text-center">
     <a href="#">keebrunr 2024</a>

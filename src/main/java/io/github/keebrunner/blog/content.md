@@ -1,8 +1,9 @@
+<!-- content.md -->
 ---
-title: testTitle
-description: testDescription
-date: 2024-09-27 16:40:16
-url: myUrl.html
+title: My Blog Post
+date: 2024-10-02T05:19:00
+url: 2024-10-02-my-blog-post.html
+description: This is a description of my blog post.
 ---
 
 # This is my content

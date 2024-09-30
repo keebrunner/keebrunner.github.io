@@ -17,41 +17,39 @@ import org.springframework.web.bind.annotation.RestController;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
 public class BlogApplication {
-
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
-
-        // 1. Получаем экземпляр HtmlController
         HtmlController controller = context.getBean(HtmlController.class);
 
-        // 2. Вызываем метод generateHtml
-        String generatedHtml = controller.generateHtml();
+        // Генерируем index.html
+        String generatedIndexHtml = controller.generateIndexHtml();
+        Files.write(context.getBean(PathsConfig.class).getOutputFilePath("index.html"), generatedIndexHtml.getBytes());
 
-        // 3. Получаем имя файла из метаданных
-        String outputFileName = controller.getOutputFileName();
+        // Генерируем 2024-10-02-my-blog-post.html
+        String generatedPostHtml = controller.generatePostHtml();
+        String outputPostFileName = controller.getOutputFileName();
+        Files.write(context.getBean(PathsConfig.class).getOutputFilePath(outputPostFileName), generatedPostHtml.getBytes());
 
-        // 4. Сохраняем HTML с именем файла из метаданных
-        Files.write(context.getBean(PathsConfig.class).getOutputFilePath(outputFileName), generatedHtml.getBytes());
+        // Генерируем blog.html
+        String generatedBlogHtml = controller.generateBlogHtml();
+        Files.write(context.getBean(PathsConfig.class).getBlogOutputFilePath(), generatedBlogHtml.getBytes());
 
-        // 5. Закрываем приложение
         System.exit(0);
     }
 }
 
 @Configuration
 class AppConfig {
-
     @Bean
     public HtmlGenerator htmlGenerator() {
         return new HtmlGenerator();
@@ -65,85 +63,175 @@ class HtmlController {
     @Autowired
     private PathsConfig pathsConfig;
 
-    // Метод для получения имени файла
     @Getter
-    private String outputFileName; // Поле для хранения имени файла
+    private String outputFileName;
 
-    @GetMapping("/generate")
-    public String generateHtml() throws IOException {
-        // 1.  Получаем  данные  для  каждой  страницы
-        Map<String, String> basicData = new HashMap<>();
+    @GetMapping("/generate-index")
+    public String generateIndexHtml() throws IOException {
+        return generateHtmlFromMarkdown(pathsConfig.getIndexFilePath(), pathsConfig.getBaseFilePath());
+    }
 
-        // 2.  Загружаем  контент из content.md
-        Path contentPath = pathsConfig.getContentFilePath();
-        String content = new String(Files.readAllBytes(contentPath));
+    @GetMapping("/generate-post")
+    public String generatePostHtml() throws IOException {
+        return generateHtmlFromMarkdown(pathsConfig.getContentFilePath(), pathsConfig.getPostFilePath()); // Используем post.html
+    }
 
-        // 3.  Парсим Markdown и извлекаем метаданные и контент
+    @GetMapping("/generate-blog")
+    public String generateBlogHtml() throws IOException {
+        Map<String, Object> blogData = new HashMap<>();
+
+        List<Map<String, String>> posts = getAllPosts();
+        blogData.put("posts", posts);
+
+        Path blogTemplatePath = pathsConfig.getBlogTemplatePath();
+        String blogTemplate = new String(Files.readAllBytes(blogTemplatePath));
+
+        String blogHtml = htmlGenerator.generateHtmlContent(blogTemplate, blogData);
+
+        return blogHtml;
+    }
+
+    private String generateHtmlFromMarkdown(Path markdownPath, Path templatePath) throws IOException {
+        Map<String, Object> data = new HashMap<>();
+
+        String content = new String(Files.readAllBytes(markdownPath));
+
         MutableDataSet options = new MutableDataSet();
         Parser parser = Parser.builder(options).build();
         HtmlRenderer renderer = HtmlRenderer.builder(options).build();
 
-        // Разделяем YAML front matter и контент Markdown
         String[] parts = content.split("---", 3);
         String yamlFrontMatter = parts[1];
         String markdownContent = parts[2];
 
-        // Парсим YAML front matter
         Yaml yaml = new Yaml();
         Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
-        // Получаем дату из метаданных (как java.util.Date)
         java.util.Date date = (java.util.Date) metadata.get("date");
-
-        // Преобразуем java.util.Date в LocalDateTime
         LocalDateTime localDateTime = date.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
-
-        // Форматируем дату с использованием английской локали
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
         String formattedDate = localDateTime.format(formatter);
 
-        // Вставляем дату в контент Markdown
         markdownContent = markdownContent.replace("{{date}}", formattedDate);
 
-        // Рендерим Markdown контент в HTML (с вставленной датой)
         Document document = parser.parse(markdownContent);
         String article = renderer.render(document);
 
-        basicData.put("title", (String) metadata.get("title"));
-        basicData.put("description", (String) metadata.get("description"));
-        basicData.put("article", article);
-        basicData.put("url", (String) metadata.get("url")); // Получаем URL из метаданных
+        data.put("title", (String) metadata.get("title"));
+        data.put("description", (String) metadata.get("description"));
+        data.put("article", article);
+        data.put("url", (String) metadata.get("url"));
 
-        // Сохраняем имя файла из метаданных
         this.outputFileName = (String) metadata.get("url");
 
-        // 4.  Загружаем  шаблоны  для  каждой  страницы
-        Path baseTemplatePath = pathsConfig.getBaseFilePath();
-        String baseTemplate = new String(Files.readAllBytes(baseTemplatePath));
+        String template = new String(Files.readAllBytes(templatePath));
 
-        // 5.  Генерируем  HTML  для  каждой  страницы
-        String basicHtml = htmlGenerator.generateHtmlContent(baseTemplate, basicData);
+        List<Map<String, String>> latestPosts = getLatestPosts(parser, renderer);
+        data.put("latestPosts", latestPosts);
 
-        return basicHtml;
+        String html = htmlGenerator.generateHtmlContent(template, data);
+
+        return html;
     }
 
-}
+    private List<Map<String, String>> getLatestPosts(Parser parser, HtmlRenderer renderer) throws IOException {
+        List<Map<String, String>> latestPosts = new ArrayList<>();
+        Path blogDir = pathsConfig.getBlogDirPath();
 
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(blogDir)) {
+            for (Path entry : stream) {
+                if (Files.isRegularFile(entry) && entry.toString().endsWith(".md")) {
+                    String postContent = new String(Files.readAllBytes(entry));
+
+                    String[] parts = postContent.split("---", 3);
+                    String yamlFrontMatter = parts[1];
+
+                    Yaml yaml = new Yaml();
+                    Map<String, Object> metadata = yaml.load(yamlFrontMatter);
+
+                    java.util.Date date = (java.util.Date) metadata.get("date");
+                    LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+                    String formattedDate = localDateTime.format(formatter);
+
+                    Map<String, String> postMetadata = new HashMap<>();
+                    postMetadata.put("date", formattedDate);
+                    postMetadata.put("title", (String) metadata.get("title"));
+                    postMetadata.put("url", (String) metadata.get("url"));
+
+                    latestPosts.add(postMetadata);
+                }
+            }
+        }
+
+        latestPosts.sort((p1, p2) -> {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+            LocalDateTime date1 = LocalDateTime.parse(p1.get("date"), formatter);
+            LocalDateTime date2 = LocalDateTime.parse(p2.get("date"), formatter);
+            return date2.compareTo(date1); // Сортировка по убыванию даты
+        });
+
+        return latestPosts.subList(0, Math.min(latestPosts.size(), 3)); // Возвращаем не более 3 последних постов
+    }
+
+    private List<Map<String, String>> getAllPosts() throws IOException {
+        List<Map<String, String>> allPosts = new ArrayList<>();
+        Path blogDir = pathsConfig.getBlogDirPath();
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(blogDir)) {
+            for (Path entry : stream) {
+                if (Files.isRegularFile(entry) && entry.toString().endsWith(".md")) {
+                    String postContent = new String(Files.readAllBytes(entry));
+
+                    String[] parts = postContent.split("---", 3);
+                    String yamlFrontMatter = parts[1];
+
+                    Yaml yaml = new Yaml();
+                    Map<String, Object> metadata = yaml.load(yamlFrontMatter);
+
+                    Map<String, String> postMetadata = new HashMap<>();
+                    postMetadata.put("title", (String) metadata.get("title"));
+                    postMetadata.put("url", (String) metadata.get("url"));
+
+                    allPosts.add(postMetadata);
+                }
+            }
+        }
+
+        return allPosts;
+    }
+}
 
 @Component
 class HtmlGenerator {
-
     public HtmlGenerator() {
     }
 
-    public String generateHtmlContent(String template, Map<String, String> data) {
+    public String generateHtmlContent(String template, Map<String, Object> data) {
         template = template.replaceAll("th:content", "content");
-        for (Map.Entry<String, String> entry : data.entrySet()) {
+
+        for (Map.Entry<String, Object> entry : data.entrySet()) {
             String key = entry.getKey();
-            String value = entry.getValue();
-            template = template.replace("${" + key + "}", value);
+            Object value = entry.getValue();
+
+            if (value instanceof List) {
+                List<?> listValue = (List<?>) value;
+                StringBuilder listHtml = new StringBuilder();
+                for (Object item : listValue) {
+                    if (item instanceof Map) {
+                        Map<String, String> itemData = (Map<String, String>) item;
+                        listHtml.append("<li class=\"post-item\">");
+                        listHtml.append("<a href=\"/blog/").append(itemData.get("url")).append("\">");
+                        listHtml.append(itemData.get("title"));
+                        listHtml.append("</a></li>");
+                    }
+                }
+                template = template.replace("${" + key + "}", listHtml.toString());
+            } else {
+                template = template.replace("${" + key + "}", value.toString());
+            }
         }
         return template;
     }
@@ -151,10 +239,8 @@ class HtmlGenerator {
 
 @Configuration
 class PathsConfig {
-
     private final Path home = Path.of("C:", "Users", "keebrunner");
 
-    // Метод для получения пути к выходному файлу с именем файла
     public Path getOutputFilePath(String fileName) {
         return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", fileName));
     }
@@ -165,5 +251,25 @@ class PathsConfig {
 
     public Path getContentFilePath() {
         return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "content.md"));
+    }
+
+    public Path getBlogDirPath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "articles"));
+    }
+
+    public Path getBlogTemplatePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "base-blog.html"));
+    }
+
+    public Path getBlogOutputFilePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "blog.html"));
+    }
+
+    public Path getIndexFilePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "index.md"));
+    }
+
+    public Path getPostFilePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "post.html"));
     }
 }

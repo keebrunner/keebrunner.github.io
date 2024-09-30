@@ -1,27 +1,27 @@
-<!-- base.html -->
+<!-- base-blog.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text=>${title}</title>
-    <meta name="description" th:content="${description}">
+    <title content="${title}"></title>
+    <meta name="description" content="${description}">
     <meta name="author" content="https://github.com/keebrunner/">
     <meta name="theme-color" content="#87CEEB">
     <link rel="icon" type="image/svg+xml" href="hw-adhd-brain-icon.svg">
-    <meta property="og:url" th:content="${url}">
+    <meta property="og:url" content="${url}">
     <meta property="og:type" content="website">
-    <meta property="og:title" th:content="${title}">
-    <meta property="og:description" th:content="${description}">
+    <meta property="og:title" content="${title}">
+    <meta property="og:description" content="${description}">
     <meta property="og:image"
           content="https://github.com/keebrunner/keebrunner.github.io/blob/gh-pages/brain-mapping.webp">
     <meta property="og:locale" content="en-En"/>
     <meta name="twitter:card" content="summary">
     <meta property="twitter:domain" content="https://keebrunner.github.io/">
-    <meta property="twitter:url" th:content="${url}">
-    <meta name="twitter:title" th:content="${title}">
+    <meta property="twitter:url" content="${url}">
+    <meta name="twitter:title" content="${title}">
     <meta name="twitter:site" content="@keebrunr">
-    <meta name="twitter:description" th:content="${description}">
+    <meta name="twitter:description" content="${description}">
     <meta name="twitter:image"
           content="https://github.com/keebrunner/keebrunner.github.io/blob/gh-pages/brain-mapping.webp">
     <meta name="twitter:image:alt" content="keebrunr Logo">
@@ -44,14 +44,13 @@
         </ul>
     </nav>
 </header>
-<main class="mt-8 rounded-lg shadow-md">
-    <article class="p-8" id="myArticle" th:text=>${article}</article>
-    <aside class="p-8">
-        <h2 class="mb-4">Latest Posts</h2>
+<main class="mt-8">
+    <article class="mb-4 rounded-lg shadow-md p-8" id="myArticle">
+        <h2>All Posts</h2>
         <ul class="list-none">
-            ${latestPosts}
+            <li class="post-item"><a href="/blog/my-blog-post.html">My Blog Post</a></li><li class="post-item"><a href="/blog/my-blog-post.html">My Blog Post</a></li><li class="post-item"><a href="/blog/my-blog-post.html">My Blog Post</a></li><li class="post-item"><a href="/blog/my-blog-post.html">My Blog Post</a></li>
         </ul>
-    </aside>
+    </article>
 </main>
 <footer class="mt-8 mb-2 text-center">
     <a href="#">keebrunr 2024</a>
