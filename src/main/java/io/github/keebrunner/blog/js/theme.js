@@ -2,6 +2,7 @@
 
 const themeButton = document.getElementById('myButton');
 const articleElement = document.getElementById('myArticle');
+const githubIcon = document.querySelector('footer a[href^="https://github.com"] img'); // Выбираем img в ссылке на GitHub
 
 // Функция для обновления темы
 function updateTheme(theme) {
@@ -15,6 +16,9 @@ function updateTheme(theme) {
     themeButton.alt = theme === 'dark' ? 'img/sun icon' : 'img/moon icon';
     themeButton.parentElement.ariaLabel = theme === 'dark' ? 'button for switching to light theme' : 'button for switching to dark theme';
     themeButton.ariaPressed = theme === 'dark'; // Добавляем aria-pressed
+
+    // Переключаем значок GitHub
+    githubIcon.src = theme === 'dark' ? 'img/github-dark.svg' : 'img/github-light.svg';
 }
 
 // Функция для переключения темы

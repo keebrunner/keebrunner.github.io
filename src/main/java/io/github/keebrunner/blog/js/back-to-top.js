@@ -2,7 +2,7 @@ const backToTopButton = document.getElementById('backToTop');
 
 // Скролл вниз - показываем кнопку
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
+    if (window.scrollY > 10) {
         backToTopButton.classList.add('show');
     } else {
         backToTopButton.classList.remove('show');

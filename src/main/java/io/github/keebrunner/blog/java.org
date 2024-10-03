@@ -1,0 +1,582 @@
+* 1 Java Fundamentals
+** The History and Philosophy of Java
+*** TODO <2024-09-01> The Origins of Java
+*** TODO <2024-09-01> Java’s Lineage: C and C++
+*** TODO <2024-09-01> How Java Impacted the Internet
+*** TODO <2024-09-01> Java’s Magic: The Bytecode
+*** TODO <2024-09-01> Moving Beyond Applets
+*** TODO <2024-09-01> A Faster Release Schedule
+** The Java Buzzwords
+*** TODO <2024-09-01> The Java Buzzwords
+** Object-Oriented Programming
+*** TODO <2024-09-01> Encapsulation
+*** TODO <2024-09-01> Polymorphism
+*** TODO <2024-09-01> Inheritance
+** The Java Development Kit
+*** TODO <2024-09-01> The Java Development Kit
+** A First Simple Program
+*** TODO <2024-09-01> Entering the Program
+*** TODO <2024-09-01> Compiling the Program
+*** TODO <2024-09-01> The First Sample Program Line by Line
+** Handling Syntax Errors
+*** TODO <2024-09-01> Handling Syntax Errors
+** A Second Simple Program
+*** TODO <2024-09-01> A Second Simple Program
+** Another Data Type
+*** TODO <2024-09-01> Another Data Type
+** Try This 1-1: Converting Gallons to Liters
+*** TODO <2024-09-01> Try This 1-1: Converting Gallons to Liters
+** Two Control Statements
+*** TODO <2024-09-01> The if Statement
+*** TODO <2024-09-01> The for Loop
+** Create Blocks of Code
+*** TODO <2024-09-01> Create Blocks of Code
+** Semicolons and Positioning
+*** TODO <2024-09-01> Semicolons and Positioning
+** Indentation Practices
+*** TODO <2024-09-01> Indentation Practices
+** Try This 1-2: Improving the Gallons-to-Liters Converter
+*** TODO <2024-09-01> Try This 1-2: Improving the Gallons-to-Liters Converter
+** The Java Keywords
+*** TODO <2024-09-01> The Java Keywords
+** Identifiers in Java
+*** TODO <2024-09-01> Identifiers in Java
+** The Java Class Libraries
+*** TODO <2024-09-01> The Java Class Libraries
+** Chapter 1 Self Test
+*** TODO <2024-09-01> Chapter 1 Self Test
+* 2 Introducing Data Types and Operators)
+** Why Data Types Are Important
+*** TODO <2024-09-02> Why Data Types Are Important
+** Java’s Primitive Types
+*** TODO <2024-09-02> Integers
+*** TODO <2024-09-03> Floating-Point Types
+*** TODO <2024-09-03> Characters
+*** TODO <2024-09-04> The Boolean Type
+** Try This 2-1: How Far Away Is the Lightning?
+*** TODO <2024-09-04> Try This 2-1: How Far Away Is the Lightning?
+** Literals
+*** TODO <2024-09-05> Hexadecimal, Octal, and Binary Literals
+*** TODO <2024-09-05> Character Escape Sequences
+*** TODO <2024-09-06> String Literals
+** A Closer Look at Variables
+*** TODO <2024-09-06> Initializing a Variable
+*** TODO <2024-09-06> Dynamic Initialization
+*** TODO <2024-09-07> The Scope and Lifetime of Variables
+** Operators
+*** TODO <2024-09-07> Arithmetic Operators
+*** TODO <2024-09-08> Increment and Decrement
+*** TODO <2024-09-08> Relational and Logical Operators
+*** TODO <2024-09-09> Short-Circuit Logical Operators
+*** TODO <2024-09-09> The Assignment Operator
+*** TODO <2024-09-10> Shorthand Assignments
+*** TODO <2024-09-10> Type Conversion in Assignments
+*** TODO <2024-09-11> Casting Incompatible Types
+*** TODO <2024-09-11> Operator Precedence
+** Try This 2-2: Display a Truth Table for the Logical Operators
+*** TODO <2024-09-12> Try This 2-2: Display a Truth Table for the Logical Operators
+** Expressions
+*** TODO <2024-09-13> Type Conversion in Expressions
+*** TODO <2024-09-13> Spacing and Parentheses
+** Chapter 2 Self Test
+*** TODO <2024-09-13> Chapter 2 Self Test
+* 3 Program Control Statements
+** Input Characters from the Keyboard
+*** TODO <2024-09-14> Input Characters from the Keyboard
+** The if Statement
+*** TODO <2024-09-14> Nested ifs
+*** TODO <2024-09-15> The if-else-if Ladder
+** The Traditional switch Statement
+*** TODO <2024-09-15> The Traditional switch Statement
+*** TODO <2024-09-16> Nested switch Statements
+** Try This 3-1: Start Building a Java Help System
+*** TODO <2024-09-16> Try This 3-1: Start Building a Java Help System
+** The for Loop
+*** TODO <2024-09-17> Some Variations on the for Loop
+*** TODO <2024-09-17> Missing Pieces
+*** TODO <2024-09-18> The Infinite Loop
+*** TODO <2024-09-18> Loops with No Body
+*** TODO <2024-09-18> Declaring Loop Control Variables Inside the for Loop
+** The Enhanced for Loop
+*** TODO <2024-09-19> The Enhanced for Loop
+** The while Loop
+*** TODO <2024-09-19> The while Loop
+** The do-while Loop
+*** TODO <2024-09-20> The do-while Loop
+** Try This 3-2: Improve the Java Help System
+*** TODO <2024-09-20> Try This 3-2: Improve the Java Help System
+** Use break to Exit a Loop
+*** TODO <2024-09-21> Use break to Exit a Loop
+** Use break as a Form of goto
+*** TODO <2024-09-21> Use break as a Form of goto
+** Use continue
+*** TODO <2024-09-22> Use continue
+** Try This 3-3: Finish the Java Help System
+*** TODO <2024-09-22> Try This 3-3: Finish the Java Help System
+** Nested Loops
+*** TODO <2024-09-22> Nested Loops
+** Chapter 3 Self Test
+*** TODO <2024-09-22> Chapter 3 Self Test
+* 4 Introducing Classes, Objects, and Methods
+** Class Fundamentals
+*** TODO <2024-09-23> The General Form of a Class
+*** TODO <2024-09-23> Defining a Class
+*** TODO <2024-09-24> How Objects Are Created
+*** TODO <2024-09-24> Reference Variables and Assignment
+** Methods
+*** TODO <2024-09-24> Adding a Method to the Vehicle Class
+*** TODO <2024-09-25> Returning from a Method
+*** TODO <2024-09-25> Returning a Value
+*** TODO <2024-09-25> Using Parameters
+*** TODO <2024-09-26> Adding a Parameterized Method to Vehicle
+** Try This 4-1: Creating a Help Class
+*** TODO <2024-09-26> Try This 4-1: Creating a Help Class
+** Constructors
+*** TODO <2024-09-26> Constructors
+*** TODO <2024-09-27> Parameterized Constructors
+*** TODO <2024-09-27> Adding a Constructor to the Vehicle Class
+*** TODO <2024-09-28> The new Operator Revisited
+** Garbage Collection
+*** TODO <2024-09-28> Garbage Collection
+** The this Keyword
+*** TODO <2024-09-28> The this Keyword
+** Chapter 4 Self Test
+*** TODO <2024-09-29> Chapter 4 Self Test
+* 5 More Data Types and Operators
+** Arrays
+*** TODO <2024-09-29> One-Dimensional Arrays
+** Try This 5-1: Sorting an Array
+*** TODO <2024-09-29> Try This 5-1: Sorting an Array
+** Multidimensional Arrays
+*** TODO <2024-09-30> Two-Dimensional Arrays
+*** TODO <2024-09-30> Irregular Arrays
+*** TODO <2024-09-30> Arrays of Three or More Dimensions
+*** TODO <2024-09-30> Initializing Multidimensional Arrays
+** Alternative Array Declaration Syntax
+*** TODO <2024-10-01> Alternative Array Declaration Syntax
+** Assigning Array References
+*** TODO <2024-10-01> Assigning Array References
+** Using the length Member
+*** TODO <2024-10-01> Using the length Member
+** Try This 5-2: A Queue Class
+*** TODO <2024-10-02> Try This 5-2: A Queue Class
+** The For-Each Style for Loop
+*** TODO <2024-10-02> Iterating Over Multidimensional Arrays
+*** TODO <2024-10-02> Applying the Enhanced for
+** Strings
+*** TODO <2024-10-03> Constructing Strings
+*** TODO <2024-10-03> Operating on Strings
+*** TODO <2024-10-03> Arrays of Strings
+*** TODO <2024-10-03> Strings Are Immutable
+*** TODO <2024-10-03> Using a String to Control a switch Statement
+** Using Command-Line Arguments
+*** TODO <2024-10-04> Using Command-Line Arguments
+** Using Type Inference with Local Variables
+*** TODO <2024-10-04> Local Variable Type Inference with Reference Types
+*** TODO <2024-10-04> Using Local Variable Type Inference in a for Loop
+*** TODO <2024-10-04> Some var Restrictions
+** The Bitwise Operators
+*** TODO <2024-10-05> The Bitwise AND, OR, XOR, and NOT Operators
+*** TODO <2024-10-05> The Shift Operators
+*** TODO <2024-10-05> Bitwise Shorthand Assignments
+** Try This 5-3: A ShowBits Class
+*** TODO <2024-10-06> Try This 5-3: A ShowBits Class
+** The ? Operator
+*** TODO <2024-10-06> The ? Operator
+** Chapter 5 Self Test
+*** TODO <2024-10-06> Chapter 5 Self Test
+* 6 A Closer Look at Methods and Classes
+** Controlling Access to Class Members
+*** TODO <2024-10-07> Java’s Access Modifiers
+** Try This 6-1: Improving the Queue Class
+*** TODO <2024-10-07> Try This 6-1: Improving the Queue Class
+** Pass Objects to Methods
+*** TODO <2024-10-08> How Arguments Are Passed
+** Returning Objects
+*** TODO <2024-10-08> Returning Objects
+** Method Overloading
+*** TODO <2024-10-08> Method Overloading
+** Overloading Constructors
+*** TODO <2024-10-09> Overloading Constructors
+** Try This 6-2: Overloading the Queue Constructor
+*** TODO <2024-10-09> Try This 6-2: Overloading the Queue Constructor
+** Recursion
+*** TODO <2024-10-09> Recursion
+** Understanding static
+*** TODO <2024-10-10> Static Blocks
+** Try This 6-3: The Quicksort
+*** TODO <2024-10-10> Try This 6-3: The Quicksort
+** Introducing Nested and Inner Classes
+*** TODO <2024-10-11> Introducing Nested and Inner Classes
+** Varargs: Variable-Length Arguments
+*** TODO <2024-10-11> Varargs Basics
+*** TODO <2024-10-11> Overloading Varargs Methods
+*** TODO <2024-10-11> Varargs and Ambiguity
+** Chapter 6 Self Test
+*** TODO <2024-10-12> Chapter 6 Self Test
+* 7 Inheritance
+** Inheritance Basics
+*** TODO <2024-10-13> Inheritance Basics
+** Member Access and Inheritance
+*** TODO <2024-10-13> Member Access and Inheritance
+** Constructors and Inheritance
+*** TODO <2024-10-14> Constructors and Inheritance
+** Using super to Call Superclass Constructors
+*** TODO <2024-10-14> Using super to Call Superclass Constructors
+** Using super to Access Superclass Members
+*** TODO <2024-10-15> Using super to Access Superclass Members
+** Try This 7-1: Extending the Vehicle Class
+*** TODO <2024-10-15> Try This 7-1: Extending the Vehicle Class
+** Creating a Multilevel Hierarchy
+*** TODO <2024-10-16> Creating a Multilevel Hierarchy
+** When Are Constructors Executed?
+*** TODO <2024-10-16> When Are Constructors Executed?
+** Superclass References and Subclass Objects
+*** TODO <2024-10-17> Superclass References and Subclass Objects
+** Method Overriding
+*** TODO <2024-10-17> Method Overriding
+** Overridden Methods Support Polymorphism
+*** TODO <2024-10-18> Overridden Methods Support Polymorphism
+** Why Overridden Methods?
+*** TODO <2024-10-18> Why Overridden Methods?
+** Applying Method Overriding to TwoDShape
+*** TODO <2024-10-18> Applying Method Overriding to TwoDShape
+** Using Abstract Classes
+*** TODO <2024-10-19> Using Abstract Classes
+** Using final
+*** TODO <2024-10-19> final Prevents Overriding
+*** TODO <2024-10-19> final Prevents Inheritance
+*** TODO <2024-10-19> Using final with Data Members
+** The Object Class
+*** TODO <2024-10-19> The Object Class
+** Chapter 7 Self Test
+*** TODO <2024-10-19> Chapter 7 Self Test
+* 8 Packages and Interfaces
+** Packages
+*** TODO <2024-10-20> Defining a Package
+*** TODO <2024-10-20> Finding Packages and CLASSPATH
+*** TODO <2024-10-20> A Short Package Example
+** Packages and Member Access
+*** TODO <2024-10-21> A Package Access Example
+** Understanding Protected Members
+*** TODO <2024-10-21> Understanding Protected Members
+** Importing Packages
+*** TODO <2024-10-21> Importing Packages
+** Java’s Class Library Is Contained in Packages
+*** TODO <2024-10-22> Java’s Class Library Is Contained in Packages
+** Interfaces
+*** TODO <2024-10-22> Implementing Interfaces
+*** TODO <2024-10-22> Using Interface References
+** Try This 8-1: Creating a Queue Interface
+*** TODO <2024-10-23> Try This 8-1: Creating a Queue Interface
+** Variables in Interfaces
+*** TODO <2024-10-23> Variables in Interfaces
+** Interfaces Can Be Extended
+*** TODO <2024-10-23> Interfaces Can Be Extended
+** Default Interface Methods
+*** TODO <2024-10-24> Default Method Fundamentals
+*** TODO <2024-10-24> A More Practical Example of a Default Method
+*** TODO <2024-10-24> Multiple Inheritance Issues
+** Use static Methods in an Interface
+*** TODO <2024-10-25> Use static Methods in an Interface
+** Private Interface Methods
+*** TODO <2024-10-25> Private Interface Methods
+** Final Thoughts on Packages and Interfaces
+*** TODO <2024-10-26> Final Thoughts on Packages and Interfaces
+** Chapter 8 Self Test
+*** TODO <2024-10-26> Chapter 8 Self Test
+* 9 Exception Handling
+** The Exception Hierarchy
+*** TODO <2024-10-27> The Exception Hierarchy
+** Exception Handling Fundamentals
+*** TODO <2024-10-27> Exception Handling Fundamentals
+** Using try and catch
+*** TODO <2024-10-28> Using try and catch
+** A Simple Exception Example
+*** TODO <2024-10-28> A Simple Exception Example
+** The Consequences of an Uncaught Exception
+*** TODO <2024-10-28> The Consequences of an Uncaught Exception
+** Exceptions Enable You to Handle Errors Gracefully
+*** TODO <2024-10-29> Exceptions Enable You to Handle Errors Gracefully
+** Using Multiple catch Statements
+*** TODO <2024-10-29> Using Multiple catch Statements
+** Catching Subclass Exceptions
+*** TODO <2024-10-29> Catching Subclass Exceptions
+** Try Blocks Can Be Nested
+*** TODO <2024-10-29> Try Blocks Can Be Nested
+** Throwing an Exception
+*** TODO <2024-10-30> Throwing an Exception
+** Rethrowing an Exception
+*** TODO <2024-10-30> Rethrowing an Exception
+** A Closer Look at Throwable
+*** TODO <2024-10-31> A Closer Look at Throwable
+** Using finally
+*** TODO <2024-10-31> Using finally
+** Using throws
+*** TODO <2024-10-31> Using throws
+** Three Additional Exception Features
+*** TODO <2024-11-01> Three Additional Exception Features
+** Java’s Built-in Exceptions
+*** TODO <2024-11-01> Java’s Built-in Exceptions
+** Creating Exception Subclasses
+*** TODO <2024-11-02> Creating Exception Subclasses
+** Try This 9-1: Adding Exceptions to the Queue Class
+*** TODO <2024-11-02> Try This 9-1: Adding Exceptions to the Queue Class
+** Chapter 9 Self Test
+*** TODO <2024-11-03> Chapter 9 Self Test
+* 10 Using I/O
+** Java’s I/O Is Built upon Streams
+*** TODO <2024-11-03> Java’s I/O Is Built upon Streams
+** Byte Streams and Character Streams
+*** TODO <2024-11-03> The Byte Stream Classes
+*** TODO <2024-11-04> The Character Stream Classes
+** The Predefined Streams
+*** TODO <2024-11-04> The Predefined Streams
+** Using the Byte Streams
+*** TODO <2024-11-04> Reading Console Input
+*** TODO <2024-11-04> Writing Console Output
+*** TODO <2024-11-05> Reading and Writing Files Using Byte Streams
+*** TODO <2024-11-05> Inputting from a File
+*** TODO <2024-11-05> Writing to a File
+*** TODO <2024-11-06> Automatically Closing a File
+** Reading and Writing Binary Data
+*** TODO <2024-11-06> Reading and Writing Binary Data
+** Try This 10-1: A File Comparison Utility
+*** TODO <2024-11-06> Try This 10-1: A File Comparison Utility
+** Random-Access Files
+*** TODO <2024-11-06> Random-Access Files
+** Using Java’s Character-Based Streams
+*** TODO <2024-11-07> Console Input Using Character Streams
+*** TODO <2024-11-07> Console Output Using Character Streams
+** File I/O Using Character Streams
+*** TODO <2024-11-08> Using a FileWriter
+*** TODO <2024-11-08> Using a FileReader
+** Using Java’s Type Wrappers to Convert Numeric Strings
+*** TODO <2024-11-09> Using Java’s Type Wrappers to Convert Numeric Strings
+** Try This 10-2: Creating a Disk-Based Help System
+*** TODO <2024-11-09> Try This 10-2: Creating a Disk-Based Help System
+** Chapter 10 Self Test
+*** TODO <2024-11-10> Chapter 10 Self Test
+* 11 Multithreaded Programming
+** Multithreading Fundamentals
+*** TODO <2024-11-10> Multithreading Fundamentals
+** The Thread Class and Runnable Interface
+*** TODO <2024-11-10> The Thread Class and Runnable Interface
+** Creating a Thread
+*** TODO <2024-11-11> Creating a Thread
+** One Improvement and Two Simple Variations
+*** TODO <2024-11-11> One Improvement and Two Simple Variations
+** Try This 11-1: Extending Thread
+*** TODO <2024-11-11> Try This 11-1: Extending Thread
+** Creating Multiple Threads
+*** TODO <2024-11-12> Creating Multiple Threads
+** Determining When a Thread Ends
+*** TODO <2024-11-12> Determining When a Thread Ends
+** Thread Priorities
+*** TODO <2024-11-12> Thread Priorities
+** Synchronization
+*** TODO <2024-11-13> Using Synchronized Methods
+*** TODO <2024-11-13> The synchronized Statement
+** Thread Communication Using notify( ), wait( ), and notifyAll( )
+*** TODO <2024-11-14> An Example That Uses wait( ) and notify( )
+** Suspending, Resuming, and Stopping Threads
+*** TODO <2024-11-15> Suspending, Resuming, and Stopping Threads
+** Try This 11-2: Using the Main Thread
+*** TODO <2024-11-15> Try This 11-2: Using the Main Thread
+** Chapter 11 Self Test
+*** TODO <2024-11-16> Chapter 11 Self Test
+* 12 Enumerations, Autoboxing, Annotations, and More
+** Enumerations
+*** TODO <2024-11-17> Enumeration Fundamentals
+*** TODO <2024-11-18> Java Enumerations Are Class Types
+*** TODO <2024-11-18> The values( ) and valueOf( ) Methods
+*** TODO <2024-11-18> Constructors, Methods, Instance Variables, and Enumerations
+*** TODO <2024-11-19> Two Important Restrictions
+*** TODO <2024-11-19> Enumerations Inherit Enum
+** Try This 12-1: A Computer-Controlled Traffic Light
+*** TODO <2024-11-20> Try This 12-1: A Computer-Controlled Traffic Light
+** Autoboxing
+*** TODO <2024-11-20> Type Wrappers
+*** TODO <2024-11-21> Autoboxing Fundamentals
+*** TODO <2024-11-21> Autoboxing and Methods
+*** TODO <2024-11-21> Autoboxing/Unboxing Occurs in Expressions
+*** TODO <2024-11-22> A Word of Warning
+** Static Import
+*** TODO <2024-11-22> Static Import
+** Annotations (Metadata)
+*** TODO <2024-11-22> Annotations (Metadata)
+** Introducing instanceof
+*** TODO <2024-11-23> Introducing instanceof
+** Chapter 12 Self Test
+*** TODO <2024-11-23> Chapter 12 Self Test
+* 13 Generics
+** Generics Fundamentals
+*** TODO <2024-11-24> Generics Fundamentals
+** A Simple Generics Example
+*** TODO <2024-11-24> A Simple Generics Example
+** Generics Work Only with Reference Types
+*** TODO <2024-11-25> Generics Work Only with Reference Types
+** Generic Types Differ Based on Their Type Arguments
+*** TODO <2024-11-25> Generic Types Differ Based on Their Type Arguments
+** A Generic Class with Two Type Parameters
+*** TODO <2024-11-25> A Generic Class with Two Type Parameters
+** The General Form of a Generic Class
+*** TODO <2024-11-26> The General Form of a Generic Class
+** Bounded Types
+*** TODO <2024-11-26> Bounded Types
+** Using Wildcard Arguments
+*** TODO <2024-11-26> Using Wildcard Arguments
+** Bounded Wildcards
+*** TODO <2024-11-27> Bounded Wildcards
+** Generic Methods
+*** TODO <2024-11-27> Generic Methods
+** Generic Constructors
+*** TODO <2024-11-27> Generic Constructors
+** Generic Interfaces
+*** TODO <2024-11-28> Generic Interfaces
+** Try This 13-1: Create a Generic Queue
+*** TODO <2024-11-28> Try This 13-1: Create a Generic Queue
+** Raw Types and Legacy Code
+*** TODO <2024-11-28> Raw Types and Legacy Code
+** Type Inference with the Diamond Operator
+*** TODO <2024-11-28> Type Inference with the Diamond Operator
+** Local Variable Type Inference and Generics
+*** TODO <2024-11-28> Local Variable Type Inference and Generics
+** Erasure
+*** TODO <2024-11-29> Erasure
+** Ambiguity Errors
+*** TODO <2024-11-29> Ambiguity Errors
+** Some Generic Restrictions
+*** TODO <2024-11-29> Type Parameters Can’t Be Instantiated
+*** TODO <2024-11-29> Restrictions on Static Members
+*** TODO <2024-11-29> Generic Array Restrictions
+*** TODO <2024-11-29> Generic Exception Restriction
+** Continuing Your Study of Generics
+*** TODO <2024-11-30> Continuing Your Study of Generics
+** Chapter 13 Self Test
+*** TODO <2024-11-30> Chapter 13 Self Test
+* 14 Lambda Expressions and Method References
+** Introducing Lambda Expressions
+*** TODO <2024-12-01> Introducing Lambda Expressions
+** Lambda Expression Fundamentals
+*** TODO <2024-12-01> Lambda Expression Fundamentals
+** Functional Interfaces
+*** TODO <2024-12-02> Functional Interfaces
+** Lambda Expressions in Action
+*** TODO <2024-12-02> Lambda Expressions in Action
+** Block Lambda Expressions
+*** TODO <2024-12-02> Block Lambda Expressions
+** Generic Functional Interfaces
+*** TODO <2024-12-02> Generic Functional Interfaces
+** Try This 14-1: Pass a Lambda Expression as an Argument
+*** TODO <2024-12-03> Try This 14-1: Pass a Lambda Expression as an Argument
+** Lambda Expressions and Variable Capture
+*** TODO <2024-12-03> Lambda Expressions and Variable Capture
+** Throw an Exception from Within a Lambda Expression
+*** TODO <2024-12-03> Throw an Exception from Within a Lambda Expression
+** Method References
+*** TODO <2024-12-04> Method References to static Methods
+*** TODO <2024-12-04> Method References to Instance Methods
+** Constructor References
+*** TODO <2024-12-05> Constructor References
+** Predefined Functional Interfaces
+*** TODO <2024-12-05> Predefined Functional Interfaces
+** Chapter 14 Self Test
+*** TODO <2024-12-06> Chapter 14 Self Test
+* 15 Modules
+** Module Basics
+*** TODO <2024-12-07> Module Basics
+** A Simple Module Example
+*** TODO <2024-12-07> A Simple Module Example
+** Compile and Run the First Module Example
+*** TODO <2024-12-08> Compile and Run the First Module Example
+** A Closer Look at requires and exports
+*** TODO <2024-12-08> A Closer Look at requires and exports
+** java.base and the Platform Modules
+*** TODO <2024-12-08> java.base and the Platform Modules
+** Legacy Code and the Unnamed Module
+*** TODO <2024-12-09> Legacy Code and the Unnamed Module
+** Exporting to a Specific Module
+*** TODO <2024-12-09> Exporting to a Specific Module
+** Using requires transitive
+*** TODO <2024-12-09> Using requires transitive
+** Try This 15-1: Experiment with requires transitive
+*** TODO <2024-12-10> Try This 15-1: Experiment with requires transitive
+** Use Services
+*** TODO <2024-12-10> Use Services
+** Service and Service Provider Basics
+*** TODO <2024-12-11> Service and Service Provider Basics
+** The Service-Based Keywords
+*** TODO <2024-12-11> The Service-Based Keywords
+** A Module-Based Service Example
+*** TODO <2024-12-11> A Module-Based Service Example
+** Additional Module Features
+*** TODO <2024-12-12> Additional Module Features
+** Open Modules
+*** TODO <2024-12-12> Open Modules
+** The opens Statement
+*** TODO <2024-12-12> The opens Statement
+** requires static
+*** TODO <2024-12-12> requires static
+** Continuing Your Study of Modules
+*** TODO <2024-12-13> Continuing Your Study of Modules
+** Chapter 15 Self Test
+*** TODO <2024-12-13> Chapter 15 Self Test
+* 16 Switch Expressions, Records, and Other Recently Added Features
+** Enhancements to switch
+*** TODO <2024-12-14> Use a List of case Constants
+*** TODO <2024-12-15> Introducing the switch Expression and the yield Statement
+*** TODO <2024-12-15> Introducing the Arrow in a case Statement
+*** TODO <2024-12-15> A Closer Look at the Arrow case
+** Try This 16-1: Use a switch Expression to Obtain a City’s Time Zone
+*** TODO <2024-12-16> Try This 16-1: Use a switch Expression to Obtain a City’s Time Zone
+** Records
+*** TODO <2024-12-17> Record Basics
+*** TODO <2024-12-18> Create Record Constructors
+*** TODO <2024-12-19> A Closer Look at Record Getter Methods
+** Pattern Matching with instanceof
+*** TODO <2024-12-20> Pattern Matching with instanceof
+** Sealed Classes and Interfaces
+*** TODO <2024-12-21> Sealed Classes
+*** TODO <2024-12-21> Sealed Interfaces
+** Future Directions
+*** TODO <2024-12-22> Future Directions
+** Chapter 16 Self Test
+*** TODO <2024-12-22> Chapter 16 Self Test
+* 17 Introducing Swing
+** The Origins and Design Philosophy of Swing
+*** TODO <2024-12-23> The Origins and Design Philosophy of Swing
+** Components and Containers
+*** TODO <2024-12-23> Components
+*** TODO <2024-12-24> Containers
+*** TODO <2024-12-24> The Top-Level Container Panes
+** Layout Managers
+*** TODO <2024-12-25> Layout Managers
+** A First Simple Swing Program
+*** TODO <2024-12-25> A First Simple Swing Program
+** The First Swing Example Line by Line
+*** TODO <2024-12-26> The First Swing Example Line by Line
+** Swing Event Handling
+*** TODO <2024-12-26> Swing Event Handling
+** Events
+*** TODO <2024-12-27> Events
+** Event Sources
+*** TODO <2024-12-27> Event Sources
+** Event Listeners
+*** TODO <2024-12-27> Event Listeners
+** Event Classes and Listener Interfaces
+*** TODO <2024-12-28> Event Classes and Listener Interfaces
+** Use JButton
+*** TODO <2024-12-28> Use JButton
+** Work with JTextField
+*** TODO <2024-12-28> Work with JTextField
+** Create a JCheckBox
+*** TODO <2024-12-29> Create a JCheckBox
+** Work with JList
+*** TODO <2024-12-29> Work with JList
+** Try This 17-1: A Swing-Based File Comparison Utility
+*** TODO <2024-12-30> Try This 17-1: A Swing-Based File Comparison Utility
+** Use Anonymous Inner Classes or Lambda Expressions to Handle Events
+*** TODO <2024-12-30> Use Anonymous Inner Classes or Lambda Expressions to Handle Events
+** Chapter 17 Self Test
+*** TODO <2024-12-31> Chapter 17 Self Test

@@ -1,4 +1,4 @@
-name: Copy output.html in gh-pages
+name: Copy website files to gh-pages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  copy-file:
+  copy-website:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,12 +14,20 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-      - name: Copy output.html in gh-pages
-        run: |          
+      - name: Copy website files to gh-pages
+        run: |
           git checkout --orphan gh-pages
           git rm --cached -r .
-          cp src/main/java/io/github/keebrunner/blog/output.html .
-          git add output.html
-          git clean -fd -e output.html
-          git commit -m "Update output.html in gh-pages"
+          cp -r src/main/java/io/github/keebrunner/blog/blog .
+          cp -r src/main/java/io/github/keebrunner/blog/css .
+          cp -r src/main/java/io/github/keebrunner/blog/img .
+          cp -r src/main/java/io/github/keebrunner/blog/js .
+          cp src/main/java/io/github/keebrunner/blog/index.html .
+          cp src/main/java/io/github/keebrunner/blog/blog.html .
+          cp src/main/java/io/github/keebrunner/blog/java.html .
+          cp src/main/java/io/github/keebrunner/blog/metrics.html .
+          cp src/main/java/io/github/keebrunner/blog/post.html .
+          git add .
+          git clean -fd
+          git commit -m "Update website files in gh-pages"
           git push -f origin gh-pages

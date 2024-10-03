@@ -150,3 +150,27 @@ footer {
 .post-item a:hover {
     text-decoration: underline;
 }
+
+/* Убираем маркеры по умолчанию для всех уровней */
+ul {
+    list-style-type: none;
+}
+
+/* Убираем отступ слева у всех уровней */
+ul {
+    padding-left: 0;
+}
+
+/* Стили для разных уровней */
+.level1 {
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.level2 {
+        font-size: 1.25rem;
+}
+
+.level3 {
+    font-size: 1.25rem;
+}

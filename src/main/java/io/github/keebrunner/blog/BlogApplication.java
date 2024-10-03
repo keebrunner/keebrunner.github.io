@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -44,6 +45,14 @@ public class BlogApplication {
         String generatedBlogHtml = controller.generateBlogHtml();
         Files.write(context.getBean(PathsConfig.class).getBlogOutputFilePath(), generatedBlogHtml.getBytes());
 
+        // Генерируем java.html
+        String generatedJavaHtml = controller.generateJavaHtml();
+        Files.write(context.getBean(PathsConfig.class).getOutputFilePath("java.html"), generatedJavaHtml.getBytes());
+
+        // Генерируем metrics.html
+        String generatedMetricsHtml = controller.generateMetricsHtml();
+        Files.write(context.getBean(PathsConfig.class).getOutputFilePath("metrics.html"), generatedMetricsHtml.getBytes());
+
         System.exit(0);
     }
 }
@@ -62,7 +71,6 @@ class HtmlController {
     private HtmlGenerator htmlGenerator;
     @Autowired
     private PathsConfig pathsConfig;
-
     @Getter
     private String outputFileName;
 
@@ -91,6 +99,38 @@ class HtmlController {
         return blogHtml;
     }
 
+    @GetMapping("/generate-java")
+    public String generateJavaHtml() throws IOException {
+        Path orgPath = pathsConfig.getJavaOrgFilePath();
+        Path templatePath = pathsConfig.getOrgTemplatePath();
+
+        String content = new String(Files.readAllBytes(orgPath));
+        String template = new String(Files.readAllBytes(templatePath));
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("orgContent", generateOrgList(content)); // Генерируем HTML-список
+
+        String html = htmlGenerator.generateHtmlContent(template, data);
+
+        return html;
+    }
+
+    @GetMapping("/generate-metrics")
+    public String generateMetricsHtml() throws IOException {
+        Path metricsPath = pathsConfig.getMetricsFilePath();
+        Path templatePath = pathsConfig.getMetricsTemplatePath();
+
+        String content = new String(Files.readAllBytes(metricsPath));
+        String template = new String(Files.readAllBytes(templatePath));
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("metrics", generateMetricsList(content)); // Генерируем HTML-список метрик
+
+        String html = htmlGenerator.generateHtmlContent(template, data);
+
+        return html;
+    }
+
     private String generateHtmlFromMarkdown(Path markdownPath, Path templatePath) throws IOException {
         Map<String, Object> data = new HashMap<>();
 
@@ -107,12 +147,13 @@ class HtmlController {
         Yaml yaml = new Yaml();
         Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
-        java.util.Date date = (java.util.Date) metadata.get("date");
-        LocalDateTime localDateTime = date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
-        String formattedDate = localDateTime.format(formatter);
+        Instant instant = ((java.util.Date) metadata.get("date")).toInstant();
+
+        // Форматируем Instant с помощью DateTimeFormatter, учитывая UTC
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH)
+                .withZone(ZoneId.of("UTC")); // Указываем UTC для форматирования
+
+        String formattedDate = formatter.format(instant);
 
         markdownContent = markdownContent.replace("{{date}}", formattedDate);
 
@@ -202,7 +243,60 @@ class HtmlController {
 
         return allPosts;
     }
+
+    private String generateOrgList(String content) {
+        StringBuilder html = new StringBuilder();
+        String[] lines = content.split("\n");
+        int level = 0; // Отслеживаем уровень вложенности
+
+        for (String line : lines) {
+            if (line.startsWith("* ")) {
+                // Начало элемента первого уровня
+                if (level > 0) {
+                    // Закрываем предыдущие списки
+                    for (int i = 0; i < level - 1; i++) {
+                        html.append("</ul></li>");
+                    }
+                    html.append("</ul></li>");
+                }
+                html.append("<li><span class=\"cursor-pointer level1\" onclick=\"toggleList(this)\"><strong>* </strong>").append(line.substring(2)).append("</span><ul style=\"display: none;\">");
+                level = 1;
+            } else if (line.startsWith("** ")) {
+                // Начало элемента второго уровня
+                if (level == 1) {
+                    html.append("<li><span class=\"cursor-pointer level2\" onclick=\"toggleList(this)\"><strong>** </strong>").append(line.substring(3)).append("</span><ul style=\"display: none;\">");
+                    level = 2;
+                } else if (level == 2) {
+                    html.append("</ul></li><li><span class=\"cursor-pointer level2\" onclick=\"toggleList(this)\"><strong>** </strong>").append(line.substring(3)).append("</span><ul style=\"display: none;\">");
+                }
+            } else if (line.startsWith("*** ")) {
+                // Начало элемента третьего уровня
+                if (level == 2) {
+                    html.append("<li class=\"level3\"><strong>*** </strong>").append(line.substring(4)).append("</li>");
+                }
+            }
+        }
+
+        // Закрываем все открытые списки
+        for (int i = 0; i < level; i++) {
+            html.append("</ul></li>");
+        }
+
+        return html.toString();
+    }
+
+    private String generateMetricsList(String content) {
+        StringBuilder html = new StringBuilder();
+        String[] lines = content.split("\n");
+
+        for (String line : lines) {
+            html.append("<li>").append(line).append("</li>");
+        }
+
+        return html.toString();
+    }
 }
+
 
 @Component
 class HtmlGenerator {
@@ -271,5 +365,21 @@ class PathsConfig {
 
     public Path getPostFilePath() {
         return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "post.html"));
+    }
+
+    public Path getJavaOrgFilePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "java.org"));
+    }
+
+    public Path getOrgTemplatePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "org.html"));
+    }
+
+    public Path getMetricsFilePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "metrics.md"));
+    }
+
+    public Path getMetricsTemplatePath() {
+        return home.resolve(Path.of("IdeaProjects", "blog", "src", "main", "java", "io", "github", "keebrunner", "blog", "base-metrics.html"));
     }
 }
