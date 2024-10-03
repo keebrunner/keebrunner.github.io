@@ -1,4 +1,4 @@
-name: Copy website files to gh-pages
+name: Copy output.html in gh-pages
 
 on:
   push:
@@ -6,28 +6,27 @@ on:
       - master
 
 jobs:
-  copy-website:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Fetch all history for accurate diff
       - name: Git Configuration
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-      - name: Copy website files to gh-pages
+      - name: Copy output.html in gh-pages
         run: |
-          git checkout gh-pages || git checkout --orphan gh-pages # Checkout gh-pages or create if it doesn't exist
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/blog/ ./blog/
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/css/ ./css/
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/img/ ./img/
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/js/ ./js/
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/index.html ./
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/blog.html ./
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/java.html ./
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/metrics.html ./
-          rsync -av --delete src/main/java/io/github/keebrunner/blog/post.html ./
+          
+          cp -r src/main/java/io/github/keebrunner/blog/blog .
+          cp -r src/main/java/io/github/keebrunner/blog/css .
+          cp -r src/main/java/io/github/keebrunner/blog/img .
+          cp -r src/main/java/io/github/keebrunner/blog/js .
+          cp src/main/java/io/github/keebrunner/blog/index.html .
+          cp src/main/java/io/github/keebrunner/blog/blog.html .
+          cp src/main/java/io/github/keebrunner/blog/java.html .
+          cp src/main/java/io/github/keebrunner/blog/metrics.html .
+          cp src/main/java/io/github/keebrunner/blog/post.html .
           git add .
-          git commit -m "Update website files in gh-pages" || echo "No changes to commit"
-          git push origin gh-pages
+          
+          git commit -m "Update website files"
+          git push -f origin master
