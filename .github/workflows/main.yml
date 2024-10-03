@@ -1,4 +1,4 @@
-name: Copy output.html in gh-pages
+name: Copy site
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-      - name: Copy output.html in gh-pages
+      - name: Copy site
         run: |
           
           cp -r src/main/java/io/github/keebrunner/blog/blog .
