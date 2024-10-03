@@ -1,0 +1,176 @@
+/* Общие стили */
+body {
+    font-family: 'Inter', sans-serif;
+    visibility: hidden; /* Скрываем содержимое по умолчанию */
+}
+
+body.light,
+body.dark {
+    visibility: visible; /* Показываем содержимое, когда класс light или dark применен */
+}
+
+h1, h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+p {
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
+/* Стили для светлой темы */
+.light {
+    color: #333D42;
+    background-color: #F6F8F9;
+}
+
+body.light h1, body.light h2 {
+    color: #181C1F;
+}
+
+/* Стили для темной темы */
+.dark {
+    color: #B7CAD4;
+    background-color: #000000;
+}
+
+body.dark h1, body.dark h2 {
+    color: #EEF1F3;
+}
+
+/* Стили для статей */
+.dark-article {
+    background-color: #0E1113;
+}
+
+.light-article {
+    background-color: #FFFFFF;
+}
+
+/* Стили для aside в светлой теме */
+body.light aside {
+    background-color: #FFFFFF;
+    color: #333D42;
+}
+
+body.light aside h2 {
+    color: #181C1F;
+}
+
+/* Стили для aside в темной теме */
+body.dark aside {
+    background-color: #0E1113;
+    color: #B7CAD4;
+}
+
+body.dark aside h2 {
+    color: #EEF1F3;
+}
+
+/* Стили для навигации */
+nav {
+    /* ... */
+}
+
+/* Стили для ссылок */
+a {
+    color: #26d7fe;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+/* Стили для кнопки "Наверх" */
+.backToTop {
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    display: none;
+    z-index: 100;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 48px;
+    height: 48px;
+}
+
+.backToTop.show {
+    display: block;
+}
+
+/* Стили для облачка "Наверх" */
+.backToTop .speech-bubble {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    background-color: rgba(38, 215, 254, 0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 1vw;
+    right: 1vw;
+}
+
+/* Стили для стрелки в облачке */
+.backToTop .speech-bubble svg {
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%); /* Добавить префикс для совместимости */
+}
+
+.backToTop .speech-bubble svg path {
+    fill: #26d7fe;
+}
+
+/* Стили для футера */
+footer {
+    /* ... */
+}
+
+/* Стили для списка последних постов */
+.post-item {
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+}
+
+.post-item li {
+    margin-bottom: 10px; /* Добавляем отступ между элементами списка */
+}
+
+.post-item a {
+    /* Стили для ссылок в списке последних постов */
+
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.post-item a:hover {
+    text-decoration: underline;
+}
+
+/* Убираем маркеры по умолчанию для всех уровней */
+ul {
+    list-style-type: none;
+}
+
+/* Убираем отступ слева у всех уровней */
+ul {
+    padding-left: 0;
+}
+
+/* Стили для разных уровней */
+.level1 {
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.level2 {
+        font-size: 1.25rem;
+}
+
+.level3 {
+    font-size: 1.25rem;
+}
