@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -32,8 +31,7 @@ public class BlogApplication {
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext context = SpringApplication.run(BlogApplication.class, args);
         HtmlController controller = context.getBean(HtmlController.class);
-
-        // Генерируем index.html
+// Генерируем index.html
         String generatedIndexHtml = controller.generateIndexHtml();
         Files.write(context.getBean(PathsConfig.class).getOutputFilePath("index.html"), generatedIndexHtml.getBytes());
 
@@ -194,15 +192,18 @@ class HtmlController {
                     Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
                     java.util.Date date = (java.util.Date) metadata.get("date");
+                    LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+                    String formattedDate = localDateTime.format(formatter);
 
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                    String formattedDate = formatter.format(date);
-
+                    // Форматируем дату для URL
+                    DateTimeFormatter urlDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+                    String urlFormattedDate = localDateTime.format(urlDateFormatter);
 
                     Map<String, String> postMetadata = new HashMap<>();
                     postMetadata.put("date", formattedDate);
-                    postMetadata.put("title", (String) metadata.get("title"));
-                    postMetadata.put("url", formattedDate + "-" + (String) metadata.get("url"));
+                    postMetadata.put("title", urlFormattedDate + " - " + (String) metadata.get("title")); // Добавляем дату к заголовку
+                    postMetadata.put("url", (String) metadata.get("url"));
 
                     latestPosts.add(postMetadata);
                 }
@@ -210,14 +211,10 @@ class HtmlController {
         }
 
         latestPosts.sort((p1, p2) -> {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            try {
-                Date date1 = formatter.parse(p1.get("date"));
-                Date date2 = formatter.parse(p2.get("date"));
-                return date2.compareTo(date1); // Сортировка по убыванию даты
-            } catch (Exception e) {
-                return 0; // Или другое поведение при ошибке парсинга
-            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
+            LocalDateTime date1 = LocalDateTime.parse(p1.get("date"), formatter);
+            LocalDateTime date2 = LocalDateTime.parse(p2.get("date"), formatter);
+            return date2.compareTo(date1); // Сортировка по убыванию даты
         });
 
         return latestPosts.subList(0, Math.min(latestPosts.size(), 3)); // Возвращаем не более 3 последних постов
@@ -239,14 +236,13 @@ class HtmlController {
                     Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
                     java.util.Date date = (java.util.Date) metadata.get("date");
-
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-                    String formattedDate = formatter.format(date);
-
+                    LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH);
+                    String formattedDate = localDateTime.format(formatter); // Форматируем дату для URL
 
                     Map<String, String> postMetadata = new HashMap<>();
-                    postMetadata.put("title", (String) metadata.get("title"));
-                    postMetadata.put("url", formattedDate + "-" + (String) metadata.get("url"));
+                    postMetadata.put("title", formattedDate + " - " + (String) metadata.get("title")); // Добавляем дату к заголовку
+                    postMetadata.put("url", (String) metadata.get("url"));
 
                     allPosts.add(postMetadata);
                 }
@@ -309,7 +305,6 @@ class HtmlController {
     }
 }
 
-
 @Component
 class HtmlGenerator {
     public HtmlGenerator() {
@@ -330,7 +325,7 @@ class HtmlGenerator {
                         Map<String, String> itemData = (Map<String, String>) item;
                         listHtml.append("<li class=\"post-item\">");
                         listHtml.append("<a href=\"/blog/").append(itemData.get("url")).append("\">");
-                        listHtml.append(itemData.get("title"));
+                        listHtml.append(itemData.get("title")); // Используем измененный заголовок с датой
                         listHtml.append("</a></li>");
                     }
                 }
