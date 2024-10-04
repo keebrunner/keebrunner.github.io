@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -193,14 +194,15 @@ class HtmlController {
                     Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
                     java.util.Date date = (java.util.Date) metadata.get("date");
-                    LocalDateTime localDateTime = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
-                    String formattedDate = localDateTime.format(formatter);
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                    String formattedDate = formatter.format(date);
+
 
                     Map<String, String> postMetadata = new HashMap<>();
                     postMetadata.put("date", formattedDate);
                     postMetadata.put("title", (String) metadata.get("title"));
-                    postMetadata.put("url", (String) metadata.get("url"));
+                    postMetadata.put("url", formattedDate + "-" + (String) metadata.get("url"));
 
                     latestPosts.add(postMetadata);
                 }
@@ -208,10 +210,14 @@ class HtmlController {
         }
 
         latestPosts.sort((p1, p2) -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss", Locale.ENGLISH);
-            LocalDateTime date1 = LocalDateTime.parse(p1.get("date"), formatter);
-            LocalDateTime date2 = LocalDateTime.parse(p2.get("date"), formatter);
-            return date2.compareTo(date1); // Сортировка по убыванию даты
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                Date date1 = formatter.parse(p1.get("date"));
+                Date date2 = formatter.parse(p2.get("date"));
+                return date2.compareTo(date1); // Сортировка по убыванию даты
+            } catch (Exception e) {
+                return 0; // Или другое поведение при ошибке парсинга
+            }
         });
 
         return latestPosts.subList(0, Math.min(latestPosts.size(), 3)); // Возвращаем не более 3 последних постов
@@ -232,9 +238,15 @@ class HtmlController {
                     Yaml yaml = new Yaml();
                     Map<String, Object> metadata = yaml.load(yamlFrontMatter);
 
+                    java.util.Date date = (java.util.Date) metadata.get("date");
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                    String formattedDate = formatter.format(date);
+
+
                     Map<String, String> postMetadata = new HashMap<>();
                     postMetadata.put("title", (String) metadata.get("title"));
-                    postMetadata.put("url", (String) metadata.get("url"));
+                    postMetadata.put("url", formattedDate + "-" + (String) metadata.get("url"));
 
                     allPosts.add(postMetadata);
                 }

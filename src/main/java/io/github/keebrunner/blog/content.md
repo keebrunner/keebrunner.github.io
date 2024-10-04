@@ -7,6 +7,10 @@ description:  Exploring the behavioral patterns associated with my stroke-induce
 
 # "Hardware ADHD" Unveiling Behavioral Patterns and the Power of External Triggers - pt0
 
+<span style="color: #26d7fe; font-size: 1.25rem; font-style: italic;">{{date}}</span>
+
+<br> <br>
+
 The "Executive functioning, ADHD symptoms and resting state functional connectivity in children with perinatal stroke" study from The Alberta Children’s Hospital continues to illuminate my understanding of my neurodiversity. It's becoming increasingly clear that the damage to my parietal lobe, the brain region responsible for task allocation, has profoundly shaped my behavioral patterns, particularly in relation to ADHD.
 
 A recent experience brought this into sharp focus. I spent an entire month building this simple blog on GitHub Pages – a task that realistically could have been completed in a few days, or even half a day. While I managed to avoid outright procrastination, I fell into a different trap: fanaticism and perfectionism. I had to consciously force myself to stop, highlighting the challenges of self-regulation that come with "hardware ADHD."
