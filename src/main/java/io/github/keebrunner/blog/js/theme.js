@@ -18,7 +18,7 @@ function updateTheme(theme) {
     themeButton.ariaPressed = theme === 'dark'; // Добавляем aria-pressed
 
     // Переключаем значок GitHub
-    githubIcon.src = theme === 'dark' ? 'img/github-dark.svg' : 'img/github-light.svg';
+    githubIcon.src = theme === 'dark' ? '../img/github-dark.svg' : '../img/github-light.svg';
 }
 
 // Функция для переключения темы
