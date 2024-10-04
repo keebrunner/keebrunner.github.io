@@ -1,6 +1,6 @@
 ---
 title: Overcoming Neurodiversity. A Journey into Bioinformatics with HARDWARE ADHD.
-date: 2024-10-03T08:18:36
+date: 2024-08-20T08:18:36
 url: index.html
 description: A personal blog exploring the challenges and triumphs of navigating a career in bioinformatics while living with the effects of cerebral palsy and ADHD. 
 ---
